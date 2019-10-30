@@ -1,0 +1,13 @@
+26/10/18     	18:00   18:30   Added SSH Key to Gitlab 
+26/10/18	18.30	19:30	Tried to understand the task in each stage
+26/10/18	19:30	20:30	Read 'readme' files, tried to understand provided API and 				code.
+26/10/18	20:30	21:30	Implemented the login and register functions
+
+27/10/18	10:00	12:30	Implemented the login and register functions including 					connection to the DataBase
+27/10/18	14:30	21:30	Implemented the feeding function and Homepage composition
+28/10/18	10:00	16:00	Implemented the Like and Comment function, including 					showing number of likes and comments and the button events 				in Homepage
+28/10/18	16:00	23:00	Implemented the Post function and profile page
+29/10/18	1:00	4:00	Implemented the profile page update function 
+
+29/10/18	8:00	14:00	Implemented the Delete and Update Post function
+29/10/18	15:00	19:00	Implemented the comment edition function 	

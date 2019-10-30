@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Instacram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- You can add your styles and scripts here -->
+
+    <script type="module" src="src/helpers.js"></script>
+    <script type="module" src="src/api.js"></script>
+
+    <!--<script type="text/javascript" src="src/jQuery.js"></script>--!>
+    <!--<script type="text/javascript" src="src/bootstrap.js"></script>-->
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <!--<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" media="screen" />-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/provided.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
+
+
+    <style type="text/css">
+        body{background:  url("images/UNSW.png") no-repeat;background-size:cover;font-size: 16px;}
+        .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
+        #login_form{display: block;}
+        #register_form{display: none;}
+        .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+        input[type="text"],input[type="password"]{padding-left:26px;}
+        .checkbox{padding-left:21px;}
+
+    </style>
+
+</head>
+<body>
+    <!-- This is an example app structure --> 
+    <header class='banner'>
+
+        <h1 id="logo"><a  href="#">Instacram</a></h1>
+        <a id='bnt_lgout' href="#" class="bnt pull-left" style="display: none">logout</a>
+        <!--
+        <ul class='nav'>
+            <li class="nav-item"><input type="file"/></li>
+            <li class='nav-item'>Icon</li>
+            <li class='nav-item'>Icon</li>
+        </ul>-->
+    </header>
+    <main role='main'>
+        <!-- app goes here -->
+        <nav class="navbar" role="navigation" style="display: none; width:20%" id="sidebar">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand"> <a id="sidebar_Home" href="#">HomePage</a></li>
+                <li class="sidebar-brand"> <a id="sidebar_Personal" href="#">Personal Homepage</a></li>
+                <li class="sidebar-brand"> <a id="sidebar_profile" href="#">Personal Profile </a></li>
+            </ul>
+        </nav>
+        <div id='large_feed' class="container" style="width: 80%">
+
+            <section id="div_post" class="post" style="width:90%; display: none; background-color:rgba(255,255,255,0.0)" >
+                <div style="margin-left: 10px">
+                    <h3>
+                        <a id = "bnt_personal" href="#"><span class="glyphicon glyphicon-user">&nbsp</span></a></h3>
+
+                </div>
+                <div style="text-align:center; width:90%; margin:auto">
+                    <textarea maxlength="250"  style="width:100%; height:80px"></textarea>
+                </div>
+                <div style="width: 100%; margin-top:10px; padding-bottom: 50px">
+                    <button id="text_post" class="btn btn-primary pull-right" style="width: 100px; height: 30px" type="button" name="send">Post</button>
+                    <input id="img_post" class="btn" style="width: 200px; height: 30px" type="file" name="send"/>
+                </div>
+            </section>
+
+            <section id="div_usr" class="form row" style="height:80%; background-color:rgba(255,255,255,0.0)">
+
+                <div id="form_usr" class="form-horizontal col-sm-offset-3 col-md-offset-3">
+                    <div class="col-sm-9 col-md-9">
+                        <div class="form-group">
+                            <i class="fa fa-user fa-lg"></i>
+                            <input class="form-control required" type="text" name="user" id="user" maxlength="20" placeholder="Username"/>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" type="password" name="pass" id="pass" maxlength="16" placeholder="Password"/>
+                            <!--<input type="hidden" id="ajaxMsg" name="ajaxMsg">-->
+                        </div>
+                        <div class="form-group">
+
+                            <input class="form-control required" type="text" name="user" id="na" maxlength="20" style="display: none" placeholder="Fullname"/>
+                        </div>
+                        <div class="form-group">
+
+                            <input class="form-control required" type="text" name="user" id="email" maxlength="20" style="display: none" placeholder="E-mail"/>
+                        </div>
+                        <div class="form-group">
+                            <input id="btn_usr" class="btn btn-success pull-right" type="submit" name="send" value="Login" />
+                        </div>
+                        <div id="lg_reg" class="form-title">
+                            <b><p>Have an account? <a id="a_lg_reg" href="#">login</a></p></b>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="div_person" class="post" style="height:80%; background-color:rgba(255,255,255,0.0); display: none; width: 80%">
+                <div id="person_header">
+                    <div></div>
+                    <ul></ul>
+                </div>
+                <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav" style="float: right;">
+                                <li ><a href="#" id="per_follows"></a></li>
+                                <li ><a href="#" id="per_posts"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+
+            <section id="div_feed" class="form row" style="width:80%; background-color:rgba(255,255,255,0.0) ;margin-top: 0px">
+
+            </section>
+
+            <section id="div_posts">
+
+            </section>
+
+            <section id="div_profile" class="post" style="display: none">
+                <header class="banner" style="background-color: rgba(255,255,255,0.0); border: 0">
+                    <h3>General Account Settings</h3>
+                </header>
+                <ul class="nav" style="width: 80%; margin: auto; ">
+                    <li class="nav-item">Name:<input class="form-control required" type="text" name="user" id="profile_user" maxlength="20"/></li>
+                    <li class="nav-item">Password:<input class="form-control required" type="password" name="pass" id="profile_pass" maxlength="16"/></li>
+                    <li class="nav-item">email address:<input class="form-control required" type="text" name="user" id="profile_email" maxlength="20"/></li>
+                </ul>
+                <div style="width: 90%; margin-top:10px; padding-bottom: 50px">
+                    <button id="btn_update_profile" class="btn btn-success pull-right" style="width: 100px; height: 30px" type="button" name="send">Update</button>
+                </div>
+            </section>
+
+            <div class="scrollerFooter1">
+
+            </div>
+
+
+
+            <!-- inject feed data -->
+        </div>
+    </main>
+    <footer style="background-color:rgba(255,255,255,0.2)">
+        <p></p>
+    </footer>
+    <script type="module" src="src/index.js"></script>
+    <script>
+        function infinityScroll(footerNode, callback) {
+            var observer = new IntersectionObserver(function(changes) {
+
+                // 注意intersectionRatio这个属性值的判断
+                if (changes[0].intersectionRatio <= 0) return;
+
+                callback();
+
+            });
+            observer.observe(document.querySelector(footerNode));
+        }
+        infinityScroll('.scrollerFooter1', function() {
+            for (var i = 0; i< 3; i++) {
+                document.getElementById('div_feed').appendChild(document.getElementById('div_feed').firstChild)
+            }
+        });
+    </script>
+
+</body>
+</html>
